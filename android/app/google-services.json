@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "621511039022",
+    "project_id": "riyagarage-252f3",
+    "storage_bucket": "riyagarage-252f3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621511039022:android:16183ead3c2c0abe3327bf",
+        "android_client_info": {
+          "package_name": "com.example.riya_garage"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL0gQ5TdYttpjmaCXPfH0_DcltmswTRvw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
