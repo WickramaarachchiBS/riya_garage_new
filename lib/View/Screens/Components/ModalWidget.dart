@@ -87,7 +87,7 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
                               children: [
                                 GestureDetector(
                                   onTap: () {
-                                    Provider.of<DetailsProvider>(context, listen: false).setCompany('Bajaj');
+                                    Provider.of<DetailsProvider>(context, listen: false).setCompany('Zotye');
                                     setState(() {
                                       selectedModal = 'ZOTYE';
                                     });

@@ -6,23 +6,22 @@ import 'Icons/IconPersonWidget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProvidersListTileWidget extends StatelessWidget {
+  final Map<String, dynamic> data;
+
   const ProvidersListTileWidget({
     super.key,
-    required this.screenWidth,
-    required this.providerName,
-    required this.providerAddress,
-    required this.providerPhoneNumber,
+    required this.data,
   });
-
-  final double screenWidth;
-  final String providerName;
-  final String providerAddress;
-  final String providerPhoneNumber;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
+    // Extract provider details from the data map
+    final String providerName = data['name'] ?? '';
+    final String providerAddress = data['description'] ?? data['des'] ?? '';
+    final String providerPhoneNumber = data['phone'] ?? data['call'] ?? '';
 
     return Padding(
       padding: screenWidth <= 600 ? const EdgeInsets.symmetric(horizontal: 0.0) : const EdgeInsets.symmetric(horizontal: 40.0),
@@ -35,11 +34,10 @@ class ProvidersListTileWidget extends StatelessWidget {
         ),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 0.0,
           children: [
             Text(providerAddress),
-            //const SizedBox(height: 4), // Adds some spacing between the lines
-            Text(providerPhoneNumber), // The additional detail you want to add
+            //const SizedBox(height: 4),
+            Text(providerPhoneNumber),
           ],
         ),
         trailing: GestureDetector(

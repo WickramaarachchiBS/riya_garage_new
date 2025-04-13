@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:riya_garage/View/Screens/Honda.dart';
 import '../../Model/DetailsProvider.dart';
 import '../AppColors.dart';
 import 'Components/ProvidersListTileWidget.dart';
@@ -16,16 +15,20 @@ class SearchTownScreen extends StatefulWidget {
 class _SearchTownScreenState extends State<SearchTownScreen> {
   TextEditingController _searchController = TextEditingController();
   List<Map<String, dynamic>> _filteredProviders = [];
+  bool _initialized = false;
 
   @override
   void initState() {
     super.initState();
-    // Initialize data if needed
-    _filteredProviders = [];
 
     // Add listener to controller to update search when text changes
     _searchController.addListener(() {
       _filterProviders(_searchController.text);
+    });
+
+    // Load data on first build
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadData();
     });
   }
 
@@ -33,6 +36,42 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
   void dispose() {
     _searchController.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadData() async {
+    if (_initialized) return;
+
+    final detailsProvider = Provider.of<DetailsProvider>(context, listen: false);
+
+    if (detailsProvider.company != null && detailsProvider.category != null && detailsProvider.city != null) {
+      await detailsProvider.setAvailableProviders();
+      _filterProviders(_searchController.text);
+      _initialized = true;
+    }
+  }
+
+  void _filterProviders(String query) {
+    final detailsProvider = Provider.of<DetailsProvider>(context, listen: false);
+    final providers = detailsProvider.availableProviders;
+
+    if (query.isEmpty) {
+      setState(() {
+        _filteredProviders = providers;
+      });
+      return;
+    }
+
+    final filtered = providers.where((provider) {
+      final name = provider['name']?.toString().toLowerCase() ?? '';
+      final address = provider['address']?.toString().toLowerCase() ?? '';
+      final searchLower = query.toLowerCase();
+
+      return name.contains(searchLower) || address.contains(searchLower);
+    }).toList();
+
+    setState(() {
+      _filteredProviders = filtered;
+    });
   }
 
   @override
@@ -60,7 +99,6 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
             Padding(
               padding:
                   screenWidth <= 600 ? const EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0) : const EdgeInsets.symmetric(horizontal: 200.0),
-              // const EdgeInsets.symmetric(horizontal: 16.0),
               child: Row(
                 children: [
                   const SizedBox(width: 10),
@@ -69,26 +107,18 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
                       height: screenHeight * 0.05,
                       child: SearchBar(
                         controller: _searchController,
-                        onChanged: (query) {
-                          _filterProviders(query);
-                        },
+                        hintText: 'Search Provider',
                         leading: const Icon(Icons.search, size: 20),
-                        hintText: 'Search Town',
-                        hintStyle: WidgetStatePropertyAll(TextStyle(fontSize: 14.0)),
-                        shape: WidgetStateProperty.all(
+                        hintStyle: const MaterialStatePropertyAll(TextStyle(fontSize: 14.0)),
+                        shape: MaterialStateProperty.all(
                           RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30.0), // Set your desired radius
+                            borderRadius: BorderRadius.circular(30.0),
                           ),
                         ),
                         padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
                           const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
                         ),
-                        shadowColor: WidgetStateProperty.all(
-                          Colors.white,
-                        ),
-                        backgroundColor: WidgetStateProperty.all(
-                          Colors.white,
-                        ),
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
                       ),
                     ),
                   ),
@@ -97,20 +127,48 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
             ),
             Expanded(
               child: Consumer<DetailsProvider>(
-                builder: (context, providers, child) {
-                  // If search query is empty, show all providers
-                  var displayProviders = _filteredProviders.isEmpty ? providers.availableProviders : _filteredProviders;
+                builder: (context, provider, child) {
+                  if (provider.isLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+
+                  if (provider.error != null) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            provider.error!,
+                            style: const TextStyle(color: Colors.red),
+                          ),
+                          const SizedBox(height: 16),
+                          ElevatedButton(
+                            onPressed: () => provider.setAvailableProviders(),
+                            child: const Text("Retry"),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                  if (_filteredProviders.isEmpty) {
+                    // Initialize filtered providers if empty (first load)
+                    if (provider.availableProviders.isNotEmpty && _filteredProviders.isEmpty) {
+                      _filteredProviders = provider.availableProviders;
+                    }
+
+                    return const Center(
+                      child: Text("No providers found for this location."),
+                    );
+                  }
 
                   return ListView.builder(
-                    itemCount: displayProviders.length,
+                    itemCount: _filteredProviders.length,
                     itemBuilder: (context, index) {
-                      var provider = displayProviders[index];
-
                       return ProvidersListTileWidget(
-                        screenWidth: screenWidth,
-                        providerName: provider['name'],
-                        providerAddress: provider['des'],
-                        providerPhoneNumber: provider['call'],
+                        data: _filteredProviders[index],
                       );
                     },
                   );
@@ -120,24 +178,11 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Provider.of<DetailsProvider>(context, listen: false).setAvailableProviders(),
+        child: const Icon(Icons.refresh),
+        backgroundColor: AppColors.color8,
+      ),
     );
-  }
-
-  // Function to filter providers based on search query
-  void _filterProviders(String query) {
-    final providers = Provider.of<DetailsProvider>(context, listen: false);
-
-    if (query.isEmpty) {
-      setState(() {
-        _filteredProviders = [];
-      });
-    } else {
-      setState(() {
-        _filteredProviders = providers.availableProviders.where((provider) {
-          return provider['name'].toString().toLowerCase().contains(query.toLowerCase()) ||
-              provider['des'].toString().toLowerCase().contains(query.toLowerCase());
-        }).toList();
-      });
-    }
   }
 }
