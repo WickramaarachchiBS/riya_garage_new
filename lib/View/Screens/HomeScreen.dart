@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:riya_garage/Data/Bajaj/Maintenance/adddata.dart';
 import 'package:riya_garage/View/Screens/Components/ModalWidgetDistrict.dart';
 import '../../Model/DetailsProvider.dart';
 import '../AppColors.dart';
@@ -39,6 +40,7 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
+                      // addDistricts();
                       _handleTap(context, 'Maintenance', '/searchTown');
                     },
                     child: NewHomePageBoxWidget(
@@ -71,7 +73,8 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/searchTown');
+                      _handleTap2(context, 'Breakdown', '/searchTown2');
+                      // Navigator.pushNamed(context, '/searchTown2');
                     },
                     child: NewHomePageBoxWidget(
                       screenWidth: screenWidth,
@@ -86,7 +89,8 @@ class MyHomePage extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, '/searchTown');
+                      _handleTap2(context, 'Tyreshops', '/searchTown2');
+                      // Navigator.pushNamed(context, '/searchTown2');
                     },
                     child: NewHomePageBoxWidget(
                       screenWidth: screenWidth,
@@ -118,13 +122,48 @@ void _handleTap(BuildContext context, String category, String route) {
   detailsProvider.setCategory(category);
 }
 
+void _handleTap2(BuildContext context, String category, String route) {
+  final detailsProvider = Provider.of<DetailsProvider>(context, listen: false);
+
+  // Check if company is null or empty
+  if (detailsProvider.city == null || detailsProvider.city!.isEmpty) {
+    _showCompanySelectionAlert2(context);
+  } else {
+    Navigator.pushNamed(context, route);
+  }
+  detailsProvider.setCategory(category);
+}
+
 void _showCompanySelectionAlert(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text('Empty Fields!'),
-        content: const Text('Please select a vehicle brand and a city before proceeding.'),
+        content: const Text('Please select a brand and a city before proceeding.'),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+      );
+    },
+  );
+}
+
+void _showCompanySelectionAlert2(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Empty Fields!'),
+        content: const Text('Please select a city before proceeding.'),
         actions: <Widget>[
           TextButton(
             child: const Text('OK'),

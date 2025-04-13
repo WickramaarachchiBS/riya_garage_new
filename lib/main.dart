@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:riya_garage/View/Screens/SearchTownScreen2.dart';
 
 import 'Model/DetailsProvider.dart';
 import 'View/AppColors.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           '/honda': (context) => const Honda(),
           '/districts': (context) => const DistrictsScreen(),
           '/searchTown': (context) => const SearchTownScreen(), // Named route for SecondScreen
+          '/searchTown2': (context) => const SearchTownScreen2(), // Named route for SecondScreen
           '/sms': (context) => const SmsScreen(), // Named route for SmsScreen
           '/dynamic': (context) => const DynamicScreen(), //Dynamic screen
           '/chat': (context) => const ChatScreen(),

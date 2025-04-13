@@ -68,6 +68,34 @@ class DetailsProvider with ChangeNotifier {
     }
   }
 
+  Future<void> setAvailableProviders2() async {
+    if (category == null || city == null) {
+      _error = "Please select category, and city";
+      notifyListeners();
+      return;
+    }
+
+    print('Loading providers for: ${category! + city!}');
+
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      DataClass dataClass = DataClass();
+      List<Map<String, dynamic>> providers = await dataClass.getListOfProviders2((category ?? '') + (city ?? ''));
+
+      _availableProviders = providers;
+      _isLoading = false;
+      notifyListeners();
+    } catch (e) {
+      print('Error loading providers: $e');
+      _error = "Failed to load providers: ${e.toString()}";
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
   void clearProviders() {
     _availableProviders = [];
     _isLoading = false;
