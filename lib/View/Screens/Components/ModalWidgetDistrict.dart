@@ -23,7 +23,7 @@ class _ModalDistrictBottomSheetState extends State<ModalDistrictBottomSheet> {
       child: Container(
         margin: screenWidth <= 600 ? const EdgeInsets.only(top: 10.0) : const EdgeInsets.only(top: 15.0),
         child: SizedBox(
-          width: screenWidth <= 600 ? screenWidth * 0.8 : screenWidth * 0.55,
+          width: screenWidth <= 600 ? screenWidth * 0.8 : screenWidth * 0.26,
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(AppColors.color9),

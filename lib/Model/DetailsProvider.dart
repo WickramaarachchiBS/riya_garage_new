@@ -58,6 +58,7 @@ class DetailsProvider with ChangeNotifier {
       List<Map<String, dynamic>> providers = await dataClass.getListOfProviders((company ?? '') + (category ?? '') + (city ?? ''));
 
       _availableProviders = providers;
+      print('Providers loaded: $_availableProviders');
       _isLoading = false;
       notifyListeners();
     } catch (e) {

@@ -63,10 +63,10 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
 
     final filtered = providers.where((provider) {
       final name = provider['name']?.toString().toLowerCase() ?? '';
-      final address = provider['address']?.toString().toLowerCase() ?? '';
+      final description = provider['description']?.toString().toLowerCase() ?? '';
       final searchLower = query.toLowerCase();
 
-      return name.contains(searchLower) || address.contains(searchLower);
+      return name.contains(searchLower) || description.contains(searchLower);
     }).toList();
 
     setState(() {
@@ -107,7 +107,7 @@ class _SearchTownScreenState extends State<SearchTownScreen> {
                       height: screenHeight * 0.05,
                       child: SearchBar(
                         controller: _searchController,
-                        hintText: 'Search Provider',
+                        hintText: 'Search Town',
                         leading: const Icon(Icons.search, size: 20),
                         hintStyle: const MaterialStatePropertyAll(TextStyle(fontSize: 14.0)),
                         shape: MaterialStateProperty.all(

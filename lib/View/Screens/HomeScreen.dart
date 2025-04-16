@@ -30,11 +30,23 @@ class MyHomePage extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              SizedBox(
-                height: screenHeight * 0.05,
-              ),
-              const ModalBottomSheet(),
-              const ModalDistrictBottomSheet(),
+              SizedBox(height: screenHeight * 0.05),
+              if (screenWidth <= 600)
+                const Column(
+                  children: [
+                    ModalBottomSheet(),
+                    ModalDistrictBottomSheet(),
+                  ],
+                )
+              else
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ModalBottomSheet(),
+                    SizedBox(width: 28.0),
+                    ModalDistrictBottomSheet(),
+                  ],
+                ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

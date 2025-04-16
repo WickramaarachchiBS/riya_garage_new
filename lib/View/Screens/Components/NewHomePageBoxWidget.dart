@@ -25,7 +25,7 @@ class NewHomePageBoxWidget extends StatelessWidget {
 
     return Container(
       width: screenWidth <= 600 ? screenWidth * 0.38 : screenWidth * 0.23,
-      height: screenWidth <= 600 ? screenWidth * 0.39 : screenWidth * 0.13,
+      height: screenWidth <= 600 ? screenWidth * 0.4 : screenWidth * 0.13,
       // height: screenWidth * 0.39,
       decoration: BoxDecoration(
         color: AppColors.color8,
