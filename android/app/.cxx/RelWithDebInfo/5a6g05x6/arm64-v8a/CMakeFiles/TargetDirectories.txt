@@ -1,0 +1,2 @@
+C:/Users/USER/Desktop/Flutter/riya_garage/android/app/.cxx/RelWithDebInfo/5a6g05x6/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/USER/Desktop/Flutter/riya_garage/android/app/.cxx/RelWithDebInfo/5a6g05x6/arm64-v8a/CMakeFiles/rebuild_cache.dir

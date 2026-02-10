@@ -1,0 +1,2 @@
+C:/Users/USER/Desktop/Flutter/riya_garage/android/app/.cxx/Debug/3a1q4spk/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/USER/Desktop/Flutter/riya_garage/android/app/.cxx/Debug/3a1q4spk/armeabi-v7a/CMakeFiles/rebuild_cache.dir
