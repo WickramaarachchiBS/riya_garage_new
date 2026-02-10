@@ -9,7 +9,6 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-blue)](https://flutter.dev)
 
-[Features](#-features) • [Screenshots](#-screenshots) • [Installation](#-installation) • [Tech Stack](#-tech-stack) • [Contributing](#-contributing)
 
 </div>
 
@@ -43,11 +42,6 @@
 - Town/city-specific search capabilities
 - Regional coverage across multiple areas
 
-### 🔐 **Authentication & Security**
-- Firebase Authentication integration
-- Secure user data management
-- Device tracking and identification
-
 ### 🎨 **User Experience**
 - Clean and intuitive Material Design UI
 - Brand-specific navigation screens
@@ -60,13 +54,13 @@
 
 <div align="center">
 
-| Home Screen | Service Search | Provider Details | Chat Interface |
+| Home Screen | Search Options (Brand) | Search Options (Location) | Provider Details |
 |-------------|----------------|------------------|----------------|
-| ![Home](docs/screenshots/home.png) | ![Search](docs/screenshots/search.png) | ![Details](docs/screenshots/details.png) | ![Chat](docs/screenshots/chat.png) |
+| ![Home](docs/screenshots/Screenshot_1.png) | ![Search](docs/screenshots/Screenshot_2.png) | ![Details](docs/screenshots/Screenshot_3.png) | ![Chat](docs/screenshots/Screenshot_4.png) |
 
 </div>
 
-> **Note:** Add your screenshots to the `docs/screenshots/` folder
+<!-- > **Note:** Add your screenshots to the `docs/screenshots/` folder -->
 
 ---
 
@@ -79,11 +73,10 @@
 - **UI Components:** Material Design, Cupertino Icons
 
 ### **Backend & Services**
-- **Authentication:** Firebase Authentication
 - **Database:** Cloud Firestore
 - **Backend:** Firebase (BaaS)
 
-### **Key Dependencies**
+<!-- ### **Key Dependencies**
 | Package | Purpose |
 |---------|---------|
 | `firebase_core` | Firebase initialization |
@@ -92,7 +85,7 @@
 | `provider` | State management |
 | `url_launcher` | Phone call functionality |
 | `device_info_plus` | Device identification |
-| `intl` | Internationalization and formatting |
+| `intl` | Internationalization and formatting | -->
 
 ---
 
@@ -144,7 +137,7 @@ ios/                     # iOS-specific files
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/riya_garage_new.git
+   git clone https://github.com/WickramaarachchiBS/riya_garage_new.git
    cd riya_garage_new
    ```
 
