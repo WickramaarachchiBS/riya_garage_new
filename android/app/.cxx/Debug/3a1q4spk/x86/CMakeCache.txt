@@ -121,7 +121,7 @@ CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
 CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/Project
 
 //No help, variable specified on the command line.
-CMAKE_LIBRARY_OUTPUT_DIRECTORY:UNINITIALIZED=C:\Users\USER\Desktop\Flutter\riya_garage\build\app\intermediates\cxx\Debug\3a1q4spk\obj\x86
+CMAKE_LIBRARY_OUTPUT_DIRECTORY:UNINITIALIZED=build/app/intermediates/cxx/Debug/3a1q4spk/obj/x86
 
 //Path to a program.
 CMAKE_LINKER:FILEPATH=C:/Users/USER/AppData/Local/Android/Sdk/ndk/29.0.13113456/toolchains/llvm/prebuilt/windows-x86_64/bin/ld.lld.exe
