@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Model/DetailsProvider.dart';
-import 'CityPageProvinceButtonWidget.dart';
 import 'HomePageBoxWidget.dart';
 
 class DistrictPageRowComponentWidget extends StatelessWidget {

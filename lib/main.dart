@@ -10,7 +10,6 @@ import 'View/Screens/DistrictsScreen.dart';
 import 'View/Screens/HomeScreen.dart';
 import 'View/Screens/Honda.dart';
 import 'View/Screens/SearchTownScreen.dart';
-import 'View/Screens/SecondScreen.dart';
 import 'View/Screens/Suzuki.dart';
 import 'View/Screens/Toyota.dart';
 import 'View/Screens/DynamicScreen.dart';

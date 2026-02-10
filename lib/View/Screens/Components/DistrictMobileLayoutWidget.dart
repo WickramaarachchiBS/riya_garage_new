@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../../../Model/DetailsProvider.dart';
 import 'CityPageProvinceButtonWidget.dart';
 import 'DistrictPageRowComponentWidget.dart';
-import 'HomePageBoxWidget.dart';
 
 class DistrictMobileLayoutWidget extends StatelessWidget {
   const DistrictMobileLayoutWidget({

@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../../Model/DetailsProvider.dart';
 import '../AppColors.dart';
 import 'Components/ProvidersListTileWidget.dart';
-import 'Components/ModalWidgetDistrict.dart';
 
 class SearchTownScreen extends StatefulWidget {
   const SearchTownScreen({super.key});
